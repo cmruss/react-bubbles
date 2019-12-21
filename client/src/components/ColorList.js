@@ -26,6 +26,8 @@ const ColorList = ({ colors, updateColors }) => {
       .then(res => {
         console.log(res)
         setEditing(false);
+        updateColors([...colors.filter(color => (color.id !== res.data.id)),res.data])
+        console.log(colors)
       })
       .catch(err => console.log('No Dice', err))
   };
@@ -46,6 +48,7 @@ const ColorList = ({ colors, updateColors }) => {
       .post('/colors', colorToEdit)
       .then(res => {
         console.log(res)
+        updateColors([...colors, res.data])
       })
       .catch(err => console.log('No Dice', err))
   }

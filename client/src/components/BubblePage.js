@@ -16,7 +16,7 @@ const BubblePage = () => {
         setColorList(res.data)
       })
       .catch(err => console.log('No Dice.',err))
-  }, [colorList, setColorList])
+  }, [ setColorList])
 
   return (
     <>
