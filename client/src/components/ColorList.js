@@ -27,7 +27,7 @@ const ColorList = ({ colors, updateColors }) => {
         console.log(res)
         setEditing(false);
         updateColors([...colors.filter(color => (color.id !== res.data.id)),res.data])
-        console.log(colors)
+        setColorToEdit(initialColor)
       })
       .catch(err => console.log('No Dice', err))
   };
@@ -49,6 +49,7 @@ const ColorList = ({ colors, updateColors }) => {
       .then(res => {
         console.log(res)
         updateColors([...colors, res.data])
+        setColorToEdit(initialColor)
       })
       .catch(err => console.log('No Dice', err))
   }
@@ -102,7 +103,7 @@ const ColorList = ({ colors, updateColors }) => {
           </label>
           <div className="button-row">
             <button type="submit">save</button>
-            <button onClick={() => setEditing(false)}>cancel</button>
+            <button onClick={() => {setEditing(false); setColorToEdit(initialColor)}}>cancel</button>
           </div>
         </form>
       ):(        <form onSubmit={addColor}>
